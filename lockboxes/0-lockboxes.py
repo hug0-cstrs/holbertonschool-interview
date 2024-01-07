@@ -1,5 +1,17 @@
 #!/usr/bin/python3
 
+'''
+This module contains a function to determine if all the lockboxes can be unlocked.
+
+The function `canUnlockAll` takes a list of lists `boxes` as input, where each inner list represents a lockbox and contains the indices of the other lockboxes that can be opened with its key. The function returns True if all the lockboxes can be unlocked, and False otherwise.
+
+Example usage:
+boxes = [[1], [2], [3], []]
+print(canUnlockAll(boxes))  # Output: True
+
+In the above example, the first lockbox has a key to the second lockbox, the second lockbox has a key to the third lockbox, and the third lockbox has a key to the fourth lockbox. Since all the lockboxes can be unlocked, the function returns True.
+'''
+
 def canUnlockAll(boxes):
     # Créer une liste pour suivre les boîtes ouvertes
     unlocked_boxes = [False] * len(boxes)
