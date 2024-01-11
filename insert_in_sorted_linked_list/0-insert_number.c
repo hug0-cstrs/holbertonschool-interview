@@ -9,31 +9,44 @@
 
 listint_t *insert_node(listint_t **head, int number)
 {
-    listint_t *newNode, *prev = NULL, *current = *head;
+    listint_t *new, *current;
 
-    if (!head)
-        return NULL;
+    /* Vérifier si head est NULL */
+    if (head == NULL)
+        return (NULL);
 
-    newNode = malloc(sizeof(listint_t));
-    if (!newNode)
-        return NULL;
+    /* Alloue de la mémoire pour le nouveau nœud */
+    new = malloc(sizeof(listint_t));
+    if (new == NULL)
+        return (NULL);
 
-    newNode->n = number;
-    newNode->next = NULL;
+    /* Assigne une valeur au nouveau nœud */
+    new->n = number;
+    new->next = NULL;
 
-    if (*head == NULL || (*head)->n > number) {
-        newNode->next = *head;
-        *head = newNode;
-        return newNode;
+    /* Définit current sur head */
+    current = *head;
+
+    /* Si la liste est vide, faire du nouveau nœud la tête */
+    if (*head == NULL)
+        *head = new;
+
+    /* Si il y a un nouveau nœud, il doit être inséré au début */
+    else if (current->n > number)
+    {
+        new->next = current;
+        *head = new;
     }
 
-    while (current && current->n <= number) {
-        prev = current;
-        current = current->next;
+    /* Trouver le nœud après lequel le nouveau nœud doit être inséré */
+    else
+    {
+        while (current->next != NULL && current->next->n < number)
+            current = current->next;
+        new->next = current->next;
+        current->next = new;
     }
 
-    prev->next = newNode;
-    newNode->next = current;
-
-    return newNode;
+    /* Retourne l'adresse du nouveau nœud inséré */
+    return (new);
 }
