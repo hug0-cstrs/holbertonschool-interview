@@ -31,27 +31,27 @@ int height(const binary_tree_t *tree)
  */
 int btree_is_perfect(const binary_tree_t *tree)
 {
-	_Bool l_ch;
-	_Bool r_ch;
-	int l_per;
-	int r_per;
+	_Bool left_is_leaf;
+	_Bool right_is_leaf;
+	int left_is_perfect;
+	int right_is_perfect;
 
 	if (tree && height(tree->left) == height(tree->right))
 	{
 		if (height(tree->left) == -1)
 			return (1);
 
-		l_ch = !((tree->left)->left) && !((tree->left)->right);
-		r_ch = !((tree->right)->left) && !((tree->right)->right);
+		left_is_leaf = !((tree->left)->left) && !((tree->left)->right);
+		right_is_leaf = !((tree->right)->left) && !((tree->right)->right);
 
-		if ((tree->left && l_ch) && (tree->right && r_ch))
+		if ((tree->left && left_is_leaf) && (tree->right && right_is_leaf))
 			return (1);
 
 		if (tree && tree->left && tree->right)
 		{
-			l_per = btree_is_perfect(tree->left);
-			r_per = btree_is_perfect(tree->right);
-			return (l_per && r_per);
+			left_is_perfect = btree_is_perfect(tree->left);
+			right_is_perfect = btree_is_perfect(tree->right);
+			return (left_is_perfect && right_is_perfect);
 		}
 	}
 
