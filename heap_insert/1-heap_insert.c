@@ -88,54 +88,54 @@ void swap(heap_t **arg_node, heap_t **arg_child)
 	node = *arg_node, child = *arg_child;
 
 	/* If the child's value is greater than the parent's value */
-			if (child->n > node->n)
-			{
-				/* Update parent pointers of child's left and right nodes */
-				if (child->left)
-					child->left->parent = node;
-				if (child->right)
-					child->right->parent = node;
+	if (child->n > node->n)
+	{
+		/* Update parent pointers of child's left and right nodes */
+		if (child->left)
+			child->left->parent = node;
+		if (child->right)
+			child->right->parent = node;
 
-				/* Determine the relationship between node and child (left or right) */
-				if (node->left == child)
-					node_child = node->right, left_right = 0;
-				else
-					node_child = node->left, left_right = 1;
+		/* Determine the relationship between node and child (left or right) */
+		if (node->left == child)
+			node_child = node->right, left_right = 0;
+		else
+			node_child = node->left, left_right = 1;
 
-				/* Store the left and right nodes of child and node */
-				node_left = child->left, node_right = child->right;
+		/* Store the left and right nodes of child and node */
+		node_left = child->left, node_right = child->right;
 
-				/* Perform the swap based on the relationship between node and child */
-				if (left_right == 0)
-				{
-					child->right = node_child;
-					if (node_child)
-						node_child->parent = child;
-					child->left = node;
-				}
-				else
-				{
-					child->left = node_child;
-					if (node_child)
-						node_child->parent = child;
-					child->right = node;
-				}
-
-				/* Update parent pointer of child's parent */
-				if (node->parent)
-				{
-					if (node->parent->left == node)
-						node->parent->left = child;
-					else
-						node->parent->right = child;
-				}
-
-				/* Update parent pointers of parent and child */
-				parent = node->parent, child->parent = parent;
-				node->parent = child, node->left = node_left;
-				node->right = node_right, *arg_node = child;
-			}
+		/* Perform the swap based on the relationship between node and child */
+		if (left_right == 0)
+		{
+			child->right = node_child;
+			if (node_child)
+				node_child->parent = child;
+			child->left = node;
 		}
+		else
+		{
+			child->left = node_child;
+			if (node_child)
+				node_child->parent = child;
+			child->right = node;
+		}
+
+		/* Update parent pointer of child's parent */
+		if (node->parent)
+		{
+			if (node->parent->left == node)
+				node->parent->left = child;
+			else
+				node->parent->right = child;
+		}
+
+		/* Update parent pointers of parent and child */
+		parent = node->parent, child->parent = parent;
+		node->parent = child, node->left = node_left;
+		node->right = node_right, *arg_node = child;
+	}
+}
 
 /**
  * heap_insert - function that inserts a value in Max Binary Heap
