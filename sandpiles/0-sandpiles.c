@@ -110,8 +110,8 @@ void grid_change(int grid1[3][3])
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-  grid_addition(grid1, grid2); // grid1 = grid1 + grid2
-  while (!grid_is_ok(grid1)) // tant que grid1 n'est pas correcte
+  grid_addition(grid1, grid2); /* grid1 = grid1 + grid2 */
+  while (!grid_is_ok(grid1)) /* tant que grid1 n'est pas correcte */
   {
     grid_print(grid1);
     grid_change(grid1);
