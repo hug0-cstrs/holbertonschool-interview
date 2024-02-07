@@ -17,6 +17,7 @@ int is_palindrome(listint_t **head)
 
   current = *head; /* Initialisation du pointeur actuel */
   len = 0; /* Initialisation de la longueur */
+
   while (current != NULL) /* Parcours de la liste pour stocker les valeurs dans le tableau */
   {
     arr[len] = current->n; /* Stocke la valeur du noeud actuel dans le tableau */
