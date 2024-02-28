@@ -1,25 +1,25 @@
 #include "palindrome.h"
 
 /**
- * is_palindrome - vérifie si un nombre est un palindrome
- * @n: nombre à vérifier
- * Return: 1 si c'est un palindrome, 0 sinon
+ * is_palindrome - checks if a number is a palindrome
+ * @num: number to check
+ * Return: 1 if it is a palindrome, 0 otherwise
  */
-int is_palindrome(unsigned long n)
+int is_palindrome(unsigned long num)
 {
-	unsigned long reversed = 0, remainder, original;
+    unsigned long reversed = 0, last_digit, original;
 
-	original = n;
+    original = num;
 
-	while (n != 0)
-	{
-		remainder = n % 10;
-		reversed = reversed * 10 + remainder;
-		n /= 10;
-	}
+    while (num != 0)
+    {
+        last_digit = num % 10; // get the last digit
+        reversed = reversed * 10 + last_digit; // add the last digit to the reversed number
+        num /= 10; // remove the last digit from the original number
+    }
 
-	if (original == reversed)
-		return (1);
-	else
-		return (0);
+    if (original == reversed)
+        return (1);
+    else
+        return (0);
 }
